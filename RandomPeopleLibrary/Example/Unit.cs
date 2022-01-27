@@ -16,11 +16,7 @@ namespace RandomPeopleLibrary.Example
     {
         private readonly IExampleArea area;
 
-        public IExampleArea GetArea()
-        {
-            return area;
-        }
-
+    
         private Position position;
 
         private ExampleUnitStatus status;
@@ -136,5 +132,11 @@ namespace RandomPeopleLibrary.Example
         {
             
         }
+
+        IBasicArea<IExampleTarget> IBasicUnit<IExampleTarget>.GetArea()
+        {
+            return area;
+        }
+       
     }
 }

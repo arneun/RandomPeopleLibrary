@@ -9,6 +9,5 @@ namespace RandomPeopleLibrary.Example
 {
     public interface IExampleUnit : IBasicUnit<IExampleTarget>
     {
-        new IExampleArea GetArea();
     }
 }
