@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RandomPeopleLibrary.Structures
+namespace RandomPeopleLibrary.Example
 {
-    public class Target : ITarget
+    public class Target : IExampleTarget
     {
         public Position ObjectPosition { get; }
 

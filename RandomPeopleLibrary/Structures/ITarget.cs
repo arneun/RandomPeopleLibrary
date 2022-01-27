@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RandomPeopleLibrary.Structures
 {
-    public interface ITarget : IMapObject
+    public interface ITarget
     {
     }
 }

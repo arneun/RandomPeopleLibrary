@@ -1,4 +1,5 @@
 ﻿using RandomPeopleLibrary.Management;
+using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.States;
 using RandomPeopleLibrary.Structures;
 using System;
@@ -6,50 +7,42 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RandomPeopleLibrary.NPC
+namespace RandomPeopleLibrary.Example
 {
     /// <summary>
     /// Example implementation of IUnit interface
     /// </summary>
-    public class Unit : IUnit
+    public class Unit : IExampleUnit, IMapObject
     {
-        public IArea Area { get; }
+        private readonly IExampleArea area;
+
+        public IExampleArea GetArea()
+        {
+            return area;
+        }
 
         private Position position;
 
-        private UnitStatus status;
-
-        private double timeLeft;
+        private ExampleUnitStatus status;
 
         private readonly double speed;
 
-        public Unit(IArea placeToLive, double speed)
+        public Unit(IExampleArea placeToLive, double speed)
         {
-            this.Area = placeToLive;
+            this.area = placeToLive;
             this.speed = speed;
-            this.status = new UnitStatus
+            this.status = new ExampleUnitStatus
             {
                 state = UnitState.Thinking
             };
         }
 
-        public Unit(IArea placeToLive, Random random, double speed, Position position)
+        public Unit(IExampleArea placeToLive, Random random, double speed, double posX, double posY)
         {
-            this.Area = placeToLive;
-            this.speed = speed;
-            this.position = position;
-            this.status = new UnitStatus
-            {
-                state = UnitState.Thinking
-            };
-        }
-
-        public Unit(IArea placeToLive, Random random, double speed, double posX, double posY)
-        {
-            this.Area = placeToLive;
+            this.area = placeToLive;
             this.speed = speed;
             position = new Position(posX, posY);
-            this.status = new UnitStatus
+            this.status = new ExampleUnitStatus
             {
                 state = UnitState.Thinking
             };

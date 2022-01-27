@@ -12,7 +12,7 @@ namespace RandomPeopleLibrary.NPC
     {
         private static Random random = new Random();
 
-        public static async Task Leave(this IUnit unit)
+        public static async Task Leave(this IBasicUnit<ITarget> unit)
         {
             await Task.Run(() =>
                 {
@@ -21,7 +21,7 @@ namespace RandomPeopleLibrary.NPC
                 });
         }
 
-        public static async Task FinishTask(this IUnit unit)
+        public static async Task FinishTask(this IBasicUnit<ITarget> unit)
         {
             await Task.Run(() => {
                 unit.GetState().state = UnitState.Thinking;
@@ -29,10 +29,10 @@ namespace RandomPeopleLibrary.NPC
             });
         }
 
-        public static async Task FindNewTarget(this IUnit unit) 
+        public static async Task FindNewTarget(this IBasicUnit<ITarget> unit) 
         {
             var findingTargetTask = Task.Run(
-                    () => unit.Area.PointsOfInterest[random.Next(0, unit.Area.PointsOfInterest.Count - 1)]);
+                    () => unit.GetArea().PointsOfInterest[random.Next(0, unit.GetArea().PointsOfInterest.Count - 1)]);
 
             var status = Task.Run(() =>
             {
@@ -44,7 +44,7 @@ namespace RandomPeopleLibrary.NPC
             await status;
         }
 
-        public static async Task<bool> SpendTime(this IUnit unit, double timePassed)
+        public static async Task<bool> SpendTime(this IBasicUnit<ITarget> unit, double timePassed)
         {
             return await Task.Run(() =>
             {
@@ -55,7 +55,7 @@ namespace RandomPeopleLibrary.NPC
             });
         }
 
-        public static async Task Arrive(this IUnit unit)
+        public static async Task Arrive(this IBasicUnit<ITarget> unit)
         {
             await Task.Run(() =>
             {
@@ -65,19 +65,19 @@ namespace RandomPeopleLibrary.NPC
             });
         }
 
-        public static async Task ChangeState(this IUnit unit, double timepassed) 
+        public static async Task ChangeState(this IBasicUnit<ITarget> unit, double timepassed) 
         {
             await unit.ProcessUnitFrame(timepassed);
         }
 
-        public static async Task<UnitStatus> ProcessNewFrame(this IUnit unit, double timePassed) 
+        public static async Task<UnitStatus> ProcessNewFrame(this IBasicUnit<ITarget> unit, double timePassed) 
         {
             await unit.ChangeState(timePassed);
 
             return unit.GetState();
         }
 
-        public static async Task ProcessUnitFrame(this IUnit unit, double timePassed)
+        public static async Task ProcessUnitFrame(this IBasicUnit<ITarget> unit, double timePassed)
         {
             switch (unit.GetState().state)
             {

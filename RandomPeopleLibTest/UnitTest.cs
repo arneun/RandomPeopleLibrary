@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using RandomPeopleLibrary.Example;
 using RandomPeopleLibrary.Management;
 using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.States;
@@ -11,13 +12,13 @@ namespace RandomPeopleLibTest
 {
     public class Tests
     {
-        private IArea emptyArea;
+        private IExampleArea emptyArea;
         
-        private IArea simpleArea;
+        private IExampleArea simpleArea;
 
-        private List<ITarget> exampleTargets;
+        private List<IExampleTarget> exampleTargets;
         
-        private List<ITarget> oneTargetList;
+        private List<IExampleTarget> oneTargetList;
 
         private Random random;
 
@@ -25,8 +26,8 @@ namespace RandomPeopleLibTest
         public void Setup()
         {
 
-            oneTargetList = new List<ITarget>() { new Target(10, 10) };
-            this.simpleArea = new Area(oneTargetList, random);
+            oneTargetList = new List<IExampleTarget>() { new Target(10, 10) };
+            this.simpleArea = new ExampleArea(oneTargetList, random);
             this.random = new Random();
 
         }
@@ -54,8 +55,8 @@ namespace RandomPeopleLibTest
         [Test]
         public async Task TestMoveBothAxis()
         {
-            oneTargetList = new List<ITarget>() { new Target(30, 40) };
-            this.simpleArea = new Area(oneTargetList, random);
+            oneTargetList = new List<IExampleTarget>() { new Target(30, 40) };
+            this.simpleArea = new ExampleArea(oneTargetList, random);
 
 
             var unit = new Unit(simpleArea, random, 5, 0, 0);

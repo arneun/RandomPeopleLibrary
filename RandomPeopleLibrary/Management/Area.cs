@@ -1,4 +1,5 @@
-﻿using RandomPeopleLibrary.NPC;
+﻿using RandomPeopleLibrary.Example;
+using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.Structures;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace RandomPeopleLibrary.Management
         public Area(List<ITarget> targets, Random random, int unitCount)
         {
             this.availibleTargets = targets.ToArray();
-            this.simulatedUnits =  Enumerable.Range(1, unitCount).Select(x => new Unit(this, 1)).ToArray();
+            // this.simulatedUnits =  Enumerable.Range(1, unitCount).Select(x => new Unit(this, 1)).ToArray();
         }
 
         public IList<ITarget> PointsOfInterest => availibleTargets;
