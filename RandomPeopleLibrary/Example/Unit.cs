@@ -105,8 +105,9 @@ namespace RandomPeopleLibrary.Example
 
         /// <summary>
         /// Method that will be called when Unit is arriving at target
+        /// arrivalTarget is object to which Unit has just arrived
         /// </summary>
-        public void OnArrival() 
+        public void OnArrival(ITarget arrivalTarget) 
         {
         }
 

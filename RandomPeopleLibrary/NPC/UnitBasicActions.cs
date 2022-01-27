@@ -43,9 +43,9 @@ namespace RandomPeopleLibrary.NPC
 
         public static void Arrive(this IUnit unit)
         {
-            unit.GetState().TimeLeft = 0d;
+            unit.GetState().TimeLeft = unit.GetState().target.GetActivityTime();
             unit.GetState().state = UnitState.Busy;
-            unit.OnArrival();
+            unit.OnArrival(unit.GetState().target);
         }
 
         public static async Task ChangeState(this IUnit unit, double timepassed) 
@@ -62,32 +62,35 @@ namespace RandomPeopleLibrary.NPC
 
         public static async Task ProcessUnitFrame(this IUnit unit, double timePassed)
         {
-            switch (unit.GetState().state)
+            await Task.Run(() =>
             {
-                case UnitState.Moving:
-                    //  Console.WriteLine("Moving");
-                    if (unit.Move(timePassed))
-                    {
-                        unit.Arrive();
-                    }
-                    break;
-                case UnitState.Busy:
-                    //   Console.WriteLine("Busy");
-                    if (unit.SpendTime(timePassed))
-                    {
-                        unit.FinishTask();
-                    }
-                    break;
-                case UnitState.Thinking:
-                    unit.FindNewTarget();
-                    //   Console.WriteLine("found new target");
-                    break;
-                case UnitState.Leaving:
-                    //     Console.WriteLine("Leaving");
-                    unit.Leave();
-                    unit.Move(timePassed);
-                    break;
-            }
+                switch (unit.GetState().state)
+                {
+                    case UnitState.Moving:
+                        //  Console.WriteLine("Moving");
+                        if (unit.Move(timePassed))
+                        {
+                            unit.Arrive();
+                        }
+                        break;
+                    case UnitState.Busy:
+                        //   Console.WriteLine("Busy");
+                        if (unit.SpendTime(timePassed))
+                        {
+                            unit.FinishTask();
+                        }
+                        break;
+                    case UnitState.Thinking:
+                        unit.FindNewTarget();
+                        //   Console.WriteLine("found new target");
+                        break;
+                    case UnitState.Leaving:
+                        //     Console.WriteLine("Leaving");
+                        unit.Leave();
+                        unit.Move(timePassed);
+                        break;
+                }
+            }).ConfigureAwait(false);
         }
     }
 }

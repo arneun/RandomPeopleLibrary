@@ -15,5 +15,10 @@ namespace RandomPeopleLibrary.Example
             this.ObjectPosition = new Position(posX, posY);
         }
 
+        public double GetActivityTime()
+        {
+            /// always 10 for example purposes
+            return 10;
+        }
     }
 }

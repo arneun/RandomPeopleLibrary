@@ -1,5 +1,6 @@
 ﻿using RandomPeopleLibrary.Management;
 using RandomPeopleLibrary.States;
+using RandomPeopleLibrary.Structures;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,7 +26,7 @@ namespace RandomPeopleLibrary.NPC
         /// <summary>
         /// Method that will be called when Unit is arriving at target
         /// </summary>
-        void OnArrival();
+        void OnArrival(ITarget arrivalTarget);
 
         /// <summary>
         /// Method that will be called each time Unit has found new target
