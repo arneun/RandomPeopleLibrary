@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RandomPeopleLibrary.Management
+namespace RandomPeopleLibrary.Example
 {
     public class Position
     {

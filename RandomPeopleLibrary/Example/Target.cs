@@ -1,9 +1,10 @@
 ﻿using RandomPeopleLibrary.Management;
+using RandomPeopleLibrary.Structures;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RandomPeopleLibrary.Structures
+namespace RandomPeopleLibrary.Example
 {
     public class Target : ITarget
     {

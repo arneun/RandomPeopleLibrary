@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using RandomPeopleLibrary.Example;
 using RandomPeopleLibrary.Management;
 using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.States;

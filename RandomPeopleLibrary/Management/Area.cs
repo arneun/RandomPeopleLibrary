@@ -1,4 +1,5 @@
-﻿using RandomPeopleLibrary.NPC;
+﻿using RandomPeopleLibrary.Example;
+using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.Structures;
 using System;
 using System.Collections.Generic;

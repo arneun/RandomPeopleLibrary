@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RandomPeopleLibrary.NPC
 {
-    public interface IUnit : IMapObject
+    public interface IUnit
     {
         IArea Area { get; }
 
@@ -15,7 +15,7 @@ namespace RandomPeopleLibrary.NPC
 
         UnitStatus GetState();
 
-        Task<bool> Move(double timePassed);
+        bool Move(double timePassed);
 
         /// <summary>
         /// Method that will be called each frame Unit is spending it's time at target

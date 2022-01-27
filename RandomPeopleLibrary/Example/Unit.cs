@@ -1,4 +1,5 @@
 ﻿using RandomPeopleLibrary.Management;
+using RandomPeopleLibrary.NPC;
 using RandomPeopleLibrary.States;
 using RandomPeopleLibrary.Structures;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RandomPeopleLibrary.NPC
+namespace RandomPeopleLibrary.Example
 {
     /// <summary>
     /// Example implementation of IUnit interface
@@ -64,22 +65,22 @@ namespace RandomPeopleLibrary.NPC
             return this.status;
         }
 
-        public async Task<bool> Move(double timePassed) 
+        public bool Move(double timePassed) 
         {
             var velocity = speed * timePassed;
 
-            var dirX = (this.status.target.ObjectPosition.PosX - this.ObjectPosition.PosX);
+            var dirX = (this.status.target.GetPosition().PosX - this.ObjectPosition.PosX);
 
 
-            var dirY = (this.status.target.ObjectPosition.PosY - this.position.PosY);
+            var dirY = (this.status.target.GetPosition().PosY - this.position.PosY);
             var rotation = Math.Atan2(dirY, dirX); 
             
-
+            
             var moveEnd = new Position(velocity * Math.Cos(rotation) + this.position.PosX, this.position.PosY + velocity * Math.Sin(rotation));
 
             /// need to check for arrival
-            var distanceTarget = await this.getDistanceSquared(this.position, this.status.target.ObjectPosition);
-            var distanceMoveEnd = await this.getDistanceSquared(this.position, moveEnd);
+            var distanceTarget = this.getDistanceSquared(this.position, this.status.target.GetPosition());
+            var distanceMoveEnd = this.getDistanceSquared(this.position, moveEnd);
 
            // Console.WriteLine($"Comparing distance, to target {distanceTarget}, to move end {distanceMoveEnd}");
             if (distanceTarget >= distanceMoveEnd)
@@ -90,19 +91,16 @@ namespace RandomPeopleLibrary.NPC
             else
             {
              //   Console.WriteLine("arrived");
-                this.position = this.status.target.ObjectPosition;
+                this.position = this.status.target.GetPosition();
                 
                 return true;
             }
         }
 
-        private async Task<double> getDistanceSquared(Position start, Position end) 
+        private double getDistanceSquared(Position start, Position end) 
         {
-            return await Task.Run(() => 
-            {
-                return (end.PosX - start.PosX) * (end.PosX - start.PosX)
+            return (end.PosX - start.PosX) * (end.PosX - start.PosX)
                     + (end.PosY - start.PosY) * (end.PosY - start.PosY);
-            });
         }
 
         /// <summary>
