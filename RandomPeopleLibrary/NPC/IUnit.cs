@@ -6,11 +6,11 @@ namespace RandomPeopleLibrary.NPC
 {
     public interface IUnit<T> where T : ITarget
     {
-        IArea<ITarget> Area { get; }
+        IArea<T> Area { get; }
 
         UnitState State { get; set; }
 
-        UnitStatus GetState();
+        UnitStatus<T> GetState();
 
         bool Move(double timePassed);
 

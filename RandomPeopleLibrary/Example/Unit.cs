@@ -15,7 +15,7 @@ namespace RandomPeopleLibrary.Example
 
         private Position position;
 
-        private UnitStatus status;
+        private UnitStatus<ITarget> status;
 
         private double timeLeft;
 
@@ -25,7 +25,7 @@ namespace RandomPeopleLibrary.Example
         {
             this.Area = placeToLive;
             this.speed = speed;
-            this.status = new UnitStatus
+            this.status = new UnitStatus<ITarget>
             {
                 state = UnitState.Thinking
             };
@@ -36,7 +36,7 @@ namespace RandomPeopleLibrary.Example
             this.Area = placeToLive;
             this.speed = speed;
             this.position = position;
-            this.status = new UnitStatus
+            this.status = new UnitStatus<ITarget>
             {
                 state = UnitState.Thinking
             };
@@ -47,7 +47,7 @@ namespace RandomPeopleLibrary.Example
             this.Area = placeToLive;
             this.speed = speed;
             position = new Position(posX, posY);
-            this.status = new UnitStatus
+            this.status = new UnitStatus<ITarget>
             {
                 state = UnitState.Thinking
             };
@@ -57,7 +57,7 @@ namespace RandomPeopleLibrary.Example
 
         public UnitState State { get => this.status.state; set => this.status.state = value; }
 
-        public UnitStatus GetState()
+        public UnitStatus<ITarget> GetState()
         {
             return this.status;
         }

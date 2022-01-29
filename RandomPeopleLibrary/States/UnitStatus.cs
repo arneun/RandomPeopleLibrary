@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RandomPeopleLibrary.States
 {
-    public class UnitStatus
+    public class UnitStatus<T> where T : ITarget
     {
         public UnitState state;
 
-        public ITarget target;
+        public T target;
 
         public double TimeLeft;
 
