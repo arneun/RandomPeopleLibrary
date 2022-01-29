@@ -12,9 +12,9 @@ namespace RandomPeopleLibTest
 {
     public class Tests
     {
-        private IArea emptyArea;
+        private IArea<ITarget> emptyArea;
         
-        private IArea simpleArea;
+        private IArea<ITarget> simpleArea;
 
         private List<ITarget> exampleTargets;
         

@@ -1,16 +1,12 @@
 ﻿using RandomPeopleLibrary.Management;
 using RandomPeopleLibrary.States;
 using RandomPeopleLibrary.Structures;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RandomPeopleLibrary.NPC
 {
-    public interface IUnit
+    public interface IUnit<T> where T : ITarget
     {
-        IArea Area { get; }
+        IArea<ITarget> Area { get; }
 
         UnitState State { get; set; }
 

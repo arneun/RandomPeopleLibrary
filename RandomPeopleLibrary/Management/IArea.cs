@@ -5,8 +5,8 @@ using System.Text;
 
 namespace RandomPeopleLibrary.Management
 {
-    public interface IArea 
+    public interface IArea<T> where T : ITarget 
     {
-        IList<ITarget> PointsOfInterest { get; } 
+        IList<T> PointsOfInterest { get; } 
     }
 }

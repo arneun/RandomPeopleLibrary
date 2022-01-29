@@ -8,16 +8,16 @@ using System.Text;
 
 namespace RandomPeopleLibrary.Management
 {
-    public class Area : IArea
+    public class Area : IArea<ITarget>
     {
         private ITarget[] availibleTargets;
         
-        private IUnit[] simulatedUnits;
+        private IUnit<ITarget>[] simulatedUnits;
 
         public Area(List<ITarget> targets, Random random)
         {
             this.availibleTargets = targets.ToArray();
-            this.simulatedUnits = new IUnit[0];
+            this.simulatedUnits = new IUnit<ITarget>[0];
         }
 
         public Area(List<ITarget> targets, Random random, int unitCount)
