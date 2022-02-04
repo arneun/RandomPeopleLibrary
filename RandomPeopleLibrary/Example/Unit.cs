@@ -55,8 +55,6 @@ namespace RandomPeopleLibrary.Example
 
         public Position ObjectPosition => position;
 
-        public UnitState State { get => this.status.state; set => this.status.state = value; }
-
         public UnitStatus<ITarget> GetState()
         {
             return this.status;

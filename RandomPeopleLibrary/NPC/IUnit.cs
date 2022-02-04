@@ -8,8 +8,6 @@ namespace RandomPeopleLibrary.NPC
     {
         IArea<T> Area { get; }
 
-        UnitState State { get; set; }
-
         UnitStatus<T> GetState();
 
         bool Move(double timePassed);
