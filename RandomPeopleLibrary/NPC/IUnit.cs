@@ -1,14 +1,17 @@
 ﻿using RandomPeopleLibrary.Management;
+using RandomPeopleLibrary.NPC.Needs;
 using RandomPeopleLibrary.States;
 using RandomPeopleLibrary.Structures;
+using System;
 
 namespace RandomPeopleLibrary.NPC
 {
-    public interface IUnit<T> where T : ITarget
+    public interface IUnit<Target, NeedsSatisfier, Need> 
+        where Target : ITarget where Need : Enum where NeedsSatisfier : INeedSatisfier<Need> 
     {
-        IArea<T> Area { get; }
+        IArea<Target, NeedsSatisfier, Need> Area { get; }
 
-        UnitStatus<T> GetState();
+        UnitStatus<Target> GetState();
 
         bool Move(double timePassed);
 

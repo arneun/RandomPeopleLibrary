@@ -9,9 +9,9 @@ namespace RandomPeopleLibrary.Example
     /// <summary>
     /// Example implementation of IUnit interface
     /// </summary>
-    public class Unit : IUnit<ITarget>
+    public class Unit : IUnit<ITarget, NeedSatisfier, Need>
     {
-        public IArea<ITarget> Area { get; }
+        public IArea<ITarget, NeedSatisfier, Need> Area { get; }
 
         private Position position;
 
@@ -21,7 +21,7 @@ namespace RandomPeopleLibrary.Example
 
         private readonly double speed;
 
-        public Unit(IArea<ITarget> placeToLive, double speed)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, double speed)
         {
             this.Area = placeToLive;
             this.speed = speed;
@@ -31,7 +31,7 @@ namespace RandomPeopleLibrary.Example
             };
         }
 
-        public Unit(IArea<ITarget> placeToLive, Random random, double speed, Position position)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, double speed, Position position)
         {
             this.Area = placeToLive;
             this.speed = speed;
@@ -42,7 +42,7 @@ namespace RandomPeopleLibrary.Example
             };
         }
 
-        public Unit(IArea<ITarget> placeToLive, Random random, double speed, double posX, double posY)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, double speed, double posX, double posY)
         {
             this.Area = placeToLive;
             this.speed = speed;

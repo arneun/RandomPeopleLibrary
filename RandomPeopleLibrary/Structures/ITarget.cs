@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RandomPeopleLibrary.Structures
 {
-    public interface ITarget 
+    public interface ITarget
     {
         double GetActivityTime();
     }
