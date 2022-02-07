@@ -9,12 +9,12 @@ namespace RandomPeopleLibrary.Example
     public class Position
     {
 
-        public Position(double posX, double posY) {
+        public Position(float posX, float posY) {
             PosX = posX;
             PosY = posY;
         }
 
-        public double PosX { get; }
-        public double PosY { get; }
+        public float PosX { get; }
+        public float PosY { get; }
     }
 }

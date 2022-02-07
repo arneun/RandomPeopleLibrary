@@ -10,12 +10,12 @@ namespace RandomPeopleLibrary.Example
     {
         public Position ObjectPosition { get; }
 
-        public Target(double posX, double posY) 
+        public Target(float posX, float posY) 
         {
             this.ObjectPosition = new Position(posX, posY);
         }
 
-        public double GetActivityTime()
+        public float GetActivityTime()
         {
             /// always 10 for example purposes
             return 10;

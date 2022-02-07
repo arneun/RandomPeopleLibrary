@@ -15,39 +15,39 @@ namespace RandomPeopleLibrary.Example
 
         private Position position;
 
-        private UnitStatus<ITarget> status;
+        private UnitStatus<ITarget, Need> status;
 
-        private double timeLeft;
+        private float timeLeft;
 
-        private readonly double speed;
+        private readonly float speed;
 
-        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, double speed)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, float speed)
         {
             this.Area = placeToLive;
             this.speed = speed;
-            this.status = new UnitStatus<ITarget>
+            this.status = new UnitStatus<ITarget, Need>
             {
                 state = UnitState.Thinking
             };
         }
 
-        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, double speed, Position position)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, float speed, Position position)
         {
             this.Area = placeToLive;
             this.speed = speed;
             this.position = position;
-            this.status = new UnitStatus<ITarget>
+            this.status = new UnitStatus<ITarget, Need>
             {
                 state = UnitState.Thinking
             };
         }
 
-        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, double speed, double posX, double posY)
+        public Unit(IArea<ITarget, NeedSatisfier, Need> placeToLive, Random random, float speed, float posX, float posY)
         {
             this.Area = placeToLive;
             this.speed = speed;
             position = new Position(posX, posY);
-            this.status = new UnitStatus<ITarget>
+            this.status = new UnitStatus<ITarget, Need>
             {
                 state = UnitState.Thinking
             };
@@ -55,12 +55,12 @@ namespace RandomPeopleLibrary.Example
 
         public Position ObjectPosition => position;
 
-        public UnitStatus<ITarget> GetState()
+        public UnitStatus<ITarget, Need> GetState()
         {
             return this.status;
         }
 
-        public bool Move(double timePassed) 
+        public bool Move(float timePassed) 
         {
             var velocity = speed * timePassed;
 
@@ -71,7 +71,7 @@ namespace RandomPeopleLibrary.Example
             var rotation = Math.Atan2(dirY, dirX); 
             
             
-            var moveEnd = new Position(velocity * Math.Cos(rotation) + this.position.PosX, this.position.PosY + velocity * Math.Sin(rotation));
+            var moveEnd = new Position(velocity * (float)Math.Cos(rotation) + this.position.PosX, this.position.PosY + velocity * (float)Math.Sin(rotation));
 
             /// need to check for arrival
             var distanceTarget = this.getDistanceSquared(this.position, this.status.target.GetPosition());
@@ -92,7 +92,7 @@ namespace RandomPeopleLibrary.Example
             }
         }
 
-        private double getDistanceSquared(Position start, Position end) 
+        private float getDistanceSquared(Position start, Position end) 
         {
             return (end.PosX - start.PosX) * (end.PosX - start.PosX)
                     + (end.PosY - start.PosY) * (end.PosY - start.PosY);
@@ -109,7 +109,7 @@ namespace RandomPeopleLibrary.Example
         /// <summary>
         /// Method that will be called each frame Unit is spending it's time at target
         /// </summary>
-        public void OnSpendingTime(double timePassed) 
+        public void OnSpendingTime(float timePassed) 
         {
             
         }

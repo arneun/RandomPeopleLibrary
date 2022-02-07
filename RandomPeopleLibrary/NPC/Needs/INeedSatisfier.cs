@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace RandomPeopleLibrary.NPC.Needs
 {
-    public interface INeedSatisfier<Need> where Need : Enum
+    public interface INeedSatisfier<Need> : ITarget where Need : Enum
     {
         float GetSatisfactionRate();
+
+        Need SatisfiedNeed();
+
     }
 }

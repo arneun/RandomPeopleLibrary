@@ -5,13 +5,15 @@ using System.Text;
 
 namespace RandomPeopleLibrary.States
 {
-    public class UnitStatus<T> where T : ITarget
+    public class UnitStatus<Target, Need> where Target : ITarget where Need : Enum
     {
         public UnitState state;
 
-        public T target;
+        public Target target;
 
-        public double TimeLeft;
+        public float TimeLeft;
+
+        public Dictionary<Need, float> Needs;
 
     }
 

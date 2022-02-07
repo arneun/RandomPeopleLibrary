@@ -7,6 +7,6 @@ namespace RandomPeopleLibrary.Structures
 {
     public interface ITarget
     {
-        double GetActivityTime();
+        float GetActivityTime();
     }
 }

@@ -9,9 +9,19 @@ namespace RandomPeopleLibrary.Example
 {
     public class NeedSatisfier : INeedSatisfier<Need>
     {
+        public float GetActivityTime()
+        {
+            throw new NotImplementedException();
+        }
+
         public float GetSatisfactionRate()
         {
             throw new NotImplementedException();
+        }
+
+        public Need SatisfiedNeed() 
+        {
+            return 0;
         }
     }
 }
